@@ -19,7 +19,7 @@ public class Receiver {
     return latch;
   }
 
-  @KafkaListener(topics = "${kafka.topic.json}")
+  @KafkaListener(topics = "${spring.kafka.template.default-topic}")
   public void receive(OrderState orderState) {
     LOGGER.info("!!!!!!!!!!!!!! => received orderState='{}'", orderState.toString());
     latch.countDown();

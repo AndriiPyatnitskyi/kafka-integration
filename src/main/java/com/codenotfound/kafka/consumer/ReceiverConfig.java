@@ -15,14 +15,15 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-//import com.codenotfound.model.Car;
 
 @Configuration
 @EnableKafka
 public class ReceiverConfig {
 
-  @Value("${kafka.bootstrap-servers}")
+  @Value("${spring.kafka.bootstrap-servers}")
   private String bootstrapServers;
+  @Value("${spring.kafka.consumer.group-id}")
+  private String groupId;
 
   @Bean
   public Map<String, Object> consumerConfigs() {
@@ -30,7 +31,7 @@ public class ReceiverConfig {
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-    props.put(ConsumerConfig.GROUP_ID_CONFIG, "GROUP_ID_CONFIG_3");
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 
     return props;
   }
@@ -45,6 +46,7 @@ public class ReceiverConfig {
   public ConcurrentKafkaListenerContainerFactory<String, OrderState> kafkaListenerContainerFactory() {
     ConcurrentKafkaListenerContainerFactory<String, OrderState> factory =
         new ConcurrentKafkaListenerContainerFactory<>();
+
     factory.setConsumerFactory(consumerFactory());
 
     return factory;

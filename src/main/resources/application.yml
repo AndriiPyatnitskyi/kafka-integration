@@ -1,4 +1,7 @@
-kafka:
-  bootstrap-servers: 10.49.199.103:9092
-  topic:
-    json: ESB_order_state
+spring:
+  kafka:
+    consumer:
+      group-id: GROUP_ID_CONFIG_3
+    template:
+      default-topic: ESB_order_state
+    bootstrap-servers: 10.49.199.103:9092

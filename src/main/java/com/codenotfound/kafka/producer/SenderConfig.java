@@ -18,7 +18,7 @@ import com.codenotfound.model.Car;
 @Configuration
 public class SenderConfig {
 
-  @Value("${kafka.bootstrap-servers}")
+  @Value("${spring.kafka.bootstrap-servers}")
   private String bootstrapServers;
 
   @Bean
