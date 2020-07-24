@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,20 +23,20 @@ public class OrderState {
 //    private LocalDateTime eventTime;
     private int subscriberId;
     private int subscriberType;
-//    private List<Param> params;
+    private Params params;
 //
-//    @AllArgsConstructor
-//    @NoArgsConstructor
-//    @Builder
-//    @Getter
-//    @Setter
-//    @ToString
-//    public static class Param {
-//        private String eventType;
-//        private String channel;
-//        private String orderId;
-//        private String orderState;
-//        private String featureId;
-//        private String actionType;
-//    }
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    @Getter
+    @Setter
+    @ToString
+    public static class Params {
+        private String eventType;
+        private String channel;
+        private String orderId;
+        private String orderState;
+        private String featureId;
+        private String actionType;
+    }
 }
